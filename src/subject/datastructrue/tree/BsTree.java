@@ -7,36 +7,19 @@ import java.util.*;
 /**
  * @author Jarvis
  */
-class TreeNode {
-    public Integer val;
-    public TreeNode left;
-    public TreeNode right;
+public class BsTree {
+    public TreeNode<Integer> root;
 
-    public TreeNode(int val) {
-        this.val = val;
-        this.left = null;
-        this.right = null;
-    }
-
-    public TreeNode() {
-        this.left = null;
-        this.right = null;
-    }
-}
-
-public class BTree {
-    public TreeNode root;
-
-    public BTree(int[] arr) {
+    public BsTree(int[] arr) {
         for(Integer val:arr){
             this.root = insertBST(this.root,val);
         }
     }
-    public BTree() {
+    public BsTree() {
 
     }
-    private TreeNode insertBST(TreeNode node,Integer data){
-        TreeNode treeNode = new TreeNode(data);
+    private TreeNode<Integer> insertBST(TreeNode<Integer> node,Integer data){
+        TreeNode<Integer> treeNode = new TreeNode<>(data);
         if(node==null){
             node = treeNode;
         }else{
@@ -64,7 +47,7 @@ public class BTree {
                 List<List<Integer>> rst = traverseLevel(this.root);
                 System.out.println(Arrays.toString(rst.toArray()));
                 break;
-            default:;break;
+            default:break;
         }
     }
 
@@ -73,12 +56,12 @@ public class BTree {
      * @param root
      * @return
      */
-    private List<Integer> traverse(TreeNode root) {
-        Queue<TreeNode> queue = new LinkedList<>();
+    private List<Integer> traverse(TreeNode<Integer> root) {
+        Queue<TreeNode<Integer>> queue = new LinkedList<>();
         List<Integer> rst = new ArrayList<>();
         queue.offer(root);
         while (!queue.isEmpty()) {
-            TreeNode node = queue.poll();
+            TreeNode<Integer> node = queue.poll();
             rst.add(node.val);
             if (node.left != null) {
                 queue.offer(node.left);
@@ -90,14 +73,15 @@ public class BTree {
         }
         return rst;
     }
-    private List<List<Integer>> traverseLevel(TreeNode root) {
-        Queue<TreeNode> queue = new LinkedList<>();
+    private List<List<Integer>> traverseLevel(TreeNode<Integer> root) {
+        Queue<TreeNode<Integer>> queue = new LinkedList<>();
         List<List<Integer>> rst = new ArrayList<>();
         queue.offer(root);
         while (!queue.isEmpty()) {
             List<Integer> list = new ArrayList<>();
             for (int i = queue.size()-1; i >=0; i--) {
-                TreeNode node = queue.poll();
+                TreeNode<Integer> node = queue.poll();
+                assert node != null;
                 list.add(node.val);
                 if (node.left != null) {
                     queue.offer(node.left);
@@ -120,7 +104,7 @@ public class BTree {
         System.out.println();
 
     }
-    private void traverseInorder(TreeNode node,List<Integer> list){
+    private void traverseInorder(TreeNode<Integer> node,List<Integer> list){
         if(node!=null){
             traverseInorder(node.left,list);
             list.add(node.val);
