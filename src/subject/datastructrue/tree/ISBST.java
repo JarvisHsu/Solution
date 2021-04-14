@@ -12,6 +12,7 @@ package subject.datastructrue.tree;
 public class ISBST {
     public static void main(String[] args) {
         BsTree bsTree = new BsTree(new int[]{3, 2, 5, 8, 4, 7, 6, 9, 0, 1});
+        bsTree.traversalVertical();
         System.out.println(verifyBST(bsTree.root));
         System.out.println(verifyBST(null));
     }
