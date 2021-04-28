@@ -115,7 +115,6 @@ public class BsTree {
             }
             System.out.println();
         }
-
     }
 
     private List<List<Integer>> traversalVertical(TreeNode<Integer> root) {
